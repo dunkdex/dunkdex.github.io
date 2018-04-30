@@ -1,5 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 html,
 body {
@@ -57,10 +57,16 @@ body::-webkit-scrollbar-thumb:hover,
 }
 
 .navbar.navbar-default {
-  background: #fff;
+  background: #2f3d45;
   border: 0;
   border-radius: 0;
 }
+.container-fluid{
+  border: 2px;
+  border-style: solid;
+  border-color: #15232c;
+}
+
 a.navbar-brand {
   height: 50px;
   padding: 0;
@@ -332,11 +338,42 @@ pre code {
   white-space: pre;
 }
 
+.dropdown li{
+  background-color: #2f3d45 !important;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #15232c !important;
+    /* border-color: #337ab7; */
+}
+
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 1px 0;
+    overflow: hidden;
+    background-color: #15232c;
+}
 .dropdown-menu {
   max-height: 500px;
   overflow-y: auto;
+  background-color: #2f3d45;
+}
+.dropdown-menu > li.active > a {
+  color: #fff;
+  background: #15232c;
+  border: 0;
+}
+.dropdown-menu > li > a:hover {
+  color: #FFF;
+  background: #33424a;
+  border: 0;
 }
 
+.dropdown-menu > li.active > a:hover {
+  background: #15232c;
+  color: #fff;
+}
+
+/*
 .dropdown-menu::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -355,7 +392,7 @@ pre code {
 .dropdown-menu::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
 }
-
+*/
 .chat-button {
   background: #fc3;
   color: #000;
@@ -474,7 +511,8 @@ pre code {
 
 #bs-example-navbar-collapse-1 .navbar-nav a {
   font-weight: bold;
-  color: #15232c !important;
+  //color: #15232c !important;
+  color: white !important;
   font-size: 12px;
 }
 
