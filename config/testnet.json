@@ -29,10 +29,11 @@
   "etherscanAPIKey": "GCGR1C9I17TYIRNYUDDEIJH1K5BRPH4UDE",
   "tokens": [
     { "addr": "0x0000000000000000000000000000000000000000", "name": "ETH", "decimals": 18 },
-    { "addr": "0x40aade55175aaeed9c88612c3ed2ff91d8943964", "name": "1ST", "decimals": 18 }
+    { "addr": "0x40aade55175aaeed9c88612c3ed2ff91d8943964", "name": "1ST", "decimals": 18 },
+    { "addr": "0x617024D36179232091DA9E3e52093A8Fd2485Ac3", "name": "DunkPay", "decimals": 18 }
   ],
-  "defaultPair": { "token": "1ST", "base": "ETH" },
+  "defaultPair": { "token": "DunkPay", "base": "ETH" },
   "pairs": [
-    { "token": "1ST", "base": "ETH" }
+    { "token": "DunkPay", "base": "ETH" }
   ]
 }

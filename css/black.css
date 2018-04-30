@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 html,
 body {
@@ -8,8 +9,10 @@ body {
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
+  //font-family: 'Open Sans', sans-serif;
+  //font-size: 13px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 15px;
   background: #1E2B34;
   color: #ced2d5;
 }
@@ -498,12 +501,14 @@ fieldset[disabled] .form-control {
   border-radius: 2px;
   outline: 0;
   box-shadow: none;
-  font-size: 14px;
   font-weight: normal;
   text-align: left;
   color: #fff;
   background-color: #404a52;
-  font-family: 'Open Sans', sans-serif;
+  //font-family: 'Open Sans', sans-serif;
+  //font-size: 14px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 15px;
 }
 
 .form-control[disabled],
