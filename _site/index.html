@@ -216,6 +216,16 @@
         krw = parseInt(krw);
 
         return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+    }    
+    function numberForGraph(x) {
+
+        ETH_RATE = 800000;
+        //console.log(ETH_RATE);
+        //console.log(x);
+        var krw = ETH_RATE * parseFloat(x)
+        krw = parseInt(krw);
+
+        return krw;
     }
 
     var SI_PREFIXES = ["", "k", "M", "G", "T", "P", "E"];
