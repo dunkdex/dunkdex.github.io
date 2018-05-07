@@ -209,6 +209,9 @@
 
     function numberForKRW(x) {
 
+        if(!x)
+          return;
+
         ETH_RATE = 800000;
         //console.log(ETH_RATE);
         //console.log(x);
@@ -226,6 +229,16 @@
         krw = parseInt(krw);
 
         return krw;
+    }
+
+    function KRW2ETH(x) {
+
+        ETH_RATE = 800000;
+        //console.log(ETH_RATE);
+        //console.log(x);
+        var eth = parseFloat(x) / ETH_RATE ;
+
+        return eth;
     }
 
     var SI_PREFIXES = ["", "k", "M", "G", "T", "P", "E"];
