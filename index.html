@@ -193,6 +193,10 @@
       //     }
       // });
 
+    function numberForDisplay(x) {
+
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+    }    
     function numberForBigKRW(x) {
 
         ETH_RATE = 800000;
