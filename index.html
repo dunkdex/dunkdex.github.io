@@ -125,7 +125,7 @@
                         이 프로젝트의 URL은 <a href="https://dunkdex.github.io">dunkdex.com</a>입니다. 즐겨찾기에 추가하세요.
                       </p>
                       <p style="font-size: 14px;">
-                        이 인터페이스는 주문 처리 시스템을 포함하여 많은 부분에서 향상시킨 <a href="https://forkdelta.github.io/">ForkDelta</a> 의 한국어 버전 입니다 . DunkDex의 개선 된 API 및 EtherDelta의 원본 스마트컨트랙트와 작동합니다.
+                        이 인터페이스는 주문 처리 시스템을 포함하여 많은 부분에서 향상시킨 <a href="https://forkdelta.github.io">ForkDelta</a> 의 한국어 버전 입니다 . DunkDex의 개선 된 API 및 EtherDelta의 원본 스마트컨트랙트와 작동합니다.
                       </p>
                       <p style="color: #f00; font-weight: bold;">거래 방식</p>
                       <p style="font-size: 14px;">
@@ -177,11 +177,17 @@
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/js/alertify.min.js" type="text/javascript"></script>
     <script src="/js/ejs_production.js" type="text/javascript"></script>
-<!--     <script src="/js/chrome-u2f-api.js" type="text/javascript"></script> -->
+    <script src="/js/chrome-u2f-api.js" type="text/javascript"></script>
 <!--     <script src="/js/ledger.min.js" type="text/javascript"></script> -->
     <script src="/js/main.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+
+    if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
+    {
+     //alert('DESK')
+     document.write('<script type="text/javascript" src="/js/ledger.min.js"><\/script>');
+    }
 
       var ETH_RATE = 800000;
       // $.ajax({
@@ -199,9 +205,6 @@
     }    
     function numberForBigKRW(x) {
 
-        ETH_RATE = 800000;
-        //console.log(ETH_RATE);
-        //console.log(x);
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
         //console.log(krw);
@@ -215,9 +218,7 @@
 
         if(!x)
           return;
-
-        ETH_RATE = 800000;
-        //console.log(ETH_RATE);
+;
         //console.log(x);
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
@@ -226,9 +227,6 @@
     }    
     function numberForGraph(x) {
 
-        ETH_RATE = 800000;
-        //console.log(ETH_RATE);
-        //console.log(x);
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
 
@@ -237,9 +235,6 @@
 
     function KRW2ETH(x) {
 
-        ETH_RATE = 800000;
-        //console.log(ETH_RATE);
-        //console.log(x);
         var eth = parseFloat(x) / ETH_RATE ;
 
         return eth;
@@ -276,7 +271,7 @@
       ga('send', 'pageview');
     </script>
 
-<!--     <script>window.twttr = (function(d, s, id) {
+    <script>window.twttr = (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
       if (d.getElementById(id)) return t;
@@ -292,7 +287,7 @@
 
       return t;
       }(document, "script", "twitter-wjs"));
-    </script> -->
+    </script>
 
     <script>
       function embedTwitter(theme) {
