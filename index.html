@@ -187,8 +187,10 @@
     <script type="text/javascript">
 
     if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
-    {
-      $.getScript("/js/ledger.min.js");
+    {     
+      document.write('<script type="text/javascript" src="/js/ledger.min.js"><\/script>');
+
+      //$.getScript("/js/ledger.min.js");
     }
 
     var ETH_RATE = 0;
@@ -231,7 +233,6 @@
     function KRW2ETH(x) {
 
         var eth = parseFloat(x) / ETH_RATE ;
-
 
         return eth.toFixed(8);
     }
