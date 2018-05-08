@@ -182,11 +182,138 @@
     <script src="/js/ejs_production.js" type="text/javascript"></script>
     <script src="/js/chrome-u2f-api.js" type="text/javascript"></script>
 <!--     <script src="/js/ledger.min.js" type="text/javascript"></script> -->
-    <script src="/js/main.js" type="text/javascript"></script>
+<!--     <script src="/js/main.js" type="text/javascript"></script> -->
 
     <script type="text/javascript">
 
+    if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
+    {
+     //alert('DESK')
+     document.write('<script type="text/javascript" src="/js/ledger.min.js"><\/script>');
+    }
 
+    var ETH_RATE = 800000;
+
+
+    function numberForDisplay(x) {
+
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+    }    
+    function numberForBigKRW(x) {
+
+        var krw = ETH_RATE * parseFloat(x)
+        krw = parseInt(krw);
+        //console.log(krw);
+        krw = abbreviateNumber(krw);
+        return "₩"+ krw;
+
+        //return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+    }
+
+    function numberForKRW(x) {
+
+        if(!x)
+          return;
+    ;
+        //console.log(x);
+        var krw = ETH_RATE * parseFloat(x)
+        krw = parseInt(krw);
+
+        return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+    }    
+    function numberForGraph(x) {
+
+        var krw = ETH_RATE * parseFloat(x)
+        krw = parseInt(krw);
+
+        return krw;
+    }
+
+    function KRW2ETH(x) {
+
+        var eth = parseFloat(x) / ETH_RATE ;
+
+        return eth;
+    }
+
+    var SI_PREFIXES = ["", "k", "M", "G", "T", "P", "E"];
+
+    function abbreviateNumber(number){
+
+        // what tier? (determines SI prefix)
+        var tier = Math.log10(number) / 3 | 0;
+
+        // if zero, we don't need a prefix
+        if(tier == 0) return number;
+
+        // get prefix and determine scale
+        var prefix = SI_PREFIXES[tier];
+        var scale = Math.pow(10, tier * 3);
+
+        // scale the number
+        var scaled = number / scale;
+
+        // format number and add prefix as suffix
+        return scaled.toFixed(0) + prefix;
+    }
+
+    function createCookie (name, value, days) {
+        if (localStorage) localStorage.setItem(name, value);
+        else {
+            var expires = void 0;
+            if (days) {
+                var date = new Date();
+                date.setTime(
+                    date.getTime() + 24 * days * 60 * 60 * 1e3
+                ),
+                    (expires = '; expires=' + date.toGMTString());
+            } else expires = '';
+            document.cookie = name + '=' + value + expires + '; path=/';
+        }
+    }
+    function readCookie(name) {
+        if (localStorage) return localStorage.getItem(name);
+        for (
+            var nameEQ = name + '=',
+                ca = document.cookie.split(';'),
+                i = 0;
+            i < ca.length;
+            i += 1
+        ) {
+            for (var c = ca[i]; ' ' === c.charAt(0); )
+                c = c.substring(1, c.length);
+            if (0 === c.indexOf(nameEQ))
+                return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    function eraseCookie(name) {
+        localStorage
+            ? localStorage.removeItem(name)
+            : createCookie(name, '', -1);
+    }
+
+      $.ajax({
+        type: 'get',
+        url: 'https://www.bitcoinyo.com/API/getScoreboard',
+        success: function(data) {
+          ETHER_RATE = parseInt(data.result.successData.currency_rate_eth);
+
+          $("#ethRate").html("ETH =  " + numberForDisplay(ETHER_RATE)+ "KRW" );
+
+          // createCookie(
+          //     'ethPrice',
+          //     JSON.stringify(ETHER_RATE),
+          //     999
+          // );
+           //alert('DESK')
+           //document.write('<script type="text/javascript" src="/js/main.js"><\/script>');
+
+           $.getScript("js/main.js");
+           
+           $.getScript("js/twitter.js");
+        }
+      });
     </script>    
 
     <script>
@@ -197,43 +324,9 @@
       ga('create', 'UA-112001937-1', 'auto');
       ga('send', 'pageview');
     </script>
-
+<!-- 
     <script>window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
 
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-      }(document, "script", "twitter-wjs"));
-    </script>
-
-    <script>
-      function embedTwitter(theme) {
-        $('.twitter-timeline').remove();
-        twttr.widgets.createTimeline(
-          {
-            sourceType: 'profile',
-            screenName: 'dunkpay_com'
-          },
-          document.getElementById('updates'),
-          {
-            theme: theme,
-            chrome: 'transparent'
-          }
-        )
-      }
-      twttr.ready(function () {
-        embedTwitter('dark')
-      })
-    </script>
+    </script> -->
   </body>
 </html>
