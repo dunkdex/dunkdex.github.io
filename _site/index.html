@@ -182,8 +182,8 @@
     <script src="/js/ejs_production.js" type="text/javascript"></script>
     <script src="/js/chrome-u2f-api.js" type="text/javascript"></script>
 <!--     <script src="/js/ledger.min.js" type="text/javascript"></script> -->
-    <!-- <script src="/js/main.js" type="text/javascript"></script>
- -->
+    <script src="/js/main.js" type="text/javascript"></script>
+
     <script type="text/javascript">
 
     if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
@@ -191,7 +191,7 @@
       $.getScript("/js/ledger.min.js");
     }
 
-    var ETH_RATE = 800000;
+    var ETH_RATE = 0;
 
 
     function numberForDisplay(x) {
@@ -264,7 +264,7 @@
                 var date = new Date();
                 date.setTime(
                     date.getTime() + 24 * days * 60 * 60 * 1e3
-                ),
+                 ),
                     (expires = '; expires=' + date.toGMTString());
             } else expires = '';
             document.cookie = name + '=' + value + expires + '; path=/';
@@ -292,27 +292,35 @@
             : createCookie(name, '', -1);
     }
 
-      $.ajax({
-        type: 'get',
-        url: 'https://www.bitcoinyo.com/API/getScoreboard',
-        success: function(data) {
-          ETHER_RATE = parseInt(data.result.successData.currency_rate_eth);
+    $.ajax({
+      type: 'get',
+      url: 'https://www.bitcoinyo.com/API/getScoreboard',
+      success: function(data) {
+
+          var etherRate = parseInt(data.result.successData.currency_rate_eth);
 
           //alert(ETHER_RATE);
 
-          $("#ethRate").html("ETH =  " + numberForDisplay(ETHER_RATE)+ "KRW" );
+          ETH_RATE = readCookie("ETH_RATE");
 
-          // createCookie(
-          //     'ethPrice',
-          //     JSON.stringify(ETHER_RATE),
-          //     999
-          // );
-           //alert('DESK')
-           //document.write('<script type="text/javascript" src="/js/main.js"><\/script>');
+          if(!ETH_RATE || ETH_RATE == 0)
+          {
+                  createCookie(
+                      'ETH_RATE',
+                      JSON.stringify(etherRate),
+                      1
+                  );
+                  //alert("refresh")
 
-           $.getScript("/js/main.js");
-        }
-      });
+                  location.reload();
+          }else{
+            $("#ethRate").html("ETH =  " + numberForDisplay(ETH_RATE)+ "KRW" );
+            eraseCookie("ETH_RATE");
+          }
+        //$.getScript("/js/main.js");
+      }
+    });      
+
     </script>    
 
     <script>
