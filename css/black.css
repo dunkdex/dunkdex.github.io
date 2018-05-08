@@ -81,7 +81,7 @@ a.navbar-brand {
   display:table;
   width: 100%;
   box-sizing: border-box;
-  font-size: 90%;
+  //font-size: 90%;
 }
 
 .center {

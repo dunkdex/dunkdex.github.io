@@ -48,6 +48,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li><a href="https://www.dunkpay.com/token" target="_blank"><i class="fa fa-info-circle"></i>DunkPay Token 소개</a></li>
+            <li><a id="ethRate" href="https://www.dunkpay.com/token" target="_blank">DunkPay Token 소개</a></li>
           	<li style="display: none;" class="dropdown" id="helpDropdown"></li>
             <li style="display: none;" class="dropdown" id="tokenGuidesDropdown"></li>
             <li style="display: none;" class="dropdown" id="connection"></li>
@@ -79,7 +80,8 @@
                 <li role="presentation"><a href="#sell" aria-controls="sell" role="tab" data-toggle="tab" class="trn">sell</a></li>
               </ul>
             </div>
-            <div class="row-box height4 padding">
+            <!-- <div class="row-box height4 padding"> -->
+            <div class="row-box height5 padding">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="buy"></div>
                 <div role="tabpanel" class="tab-pane" id="sell"></div>
@@ -168,6 +170,7 @@
     <div id="importAccount"></div>
     <div id="otherToken"></div>
     <div id="gasPrice"></div>
+    <div id="ethPrice"></div>
     <div id="tokenGuide"></div>
     <div id="screencast"></div>
     <div id="ledger"></div>
@@ -183,83 +186,7 @@
 
     <script type="text/javascript">
 
-    if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
-    {
-     //alert('DESK')
-     document.write('<script type="text/javascript" src="/js/ledger.min.js"><\/script>');
-    }
 
-      var ETH_RATE = 800000;
-      // $.ajax({
-      //     type: 'get',
-      //     url: 'https://www.bitcoinyo.com/API/getScoreboard',
-      //     success: function(data) {
-      //       ETHER_RATE = parseInt(data.result.successData.currency_rate_eth);
-      //       alert(ETHER_RATE);
-      //     }
-      // });
-
-    function numberForDisplay(x) {
-
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
-    }    
-    function numberForBigKRW(x) {
-
-        var krw = ETH_RATE * parseFloat(x)
-        krw = parseInt(krw);
-        //console.log(krw);
-        krw = abbreviateNumber(krw);
-        return "₩"+ krw;
-
-        //return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
-    }
-
-    function numberForKRW(x) {
-
-        if(!x)
-          return;
-;
-        //console.log(x);
-        var krw = ETH_RATE * parseFloat(x)
-        krw = parseInt(krw);
-
-        return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
-    }    
-    function numberForGraph(x) {
-
-        var krw = ETH_RATE * parseFloat(x)
-        krw = parseInt(krw);
-
-        return krw;
-    }
-
-    function KRW2ETH(x) {
-
-        var eth = parseFloat(x) / ETH_RATE ;
-
-        return eth;
-    }
-
-    var SI_PREFIXES = ["", "k", "M", "G", "T", "P", "E"];
-
-    function abbreviateNumber(number){
-
-        // what tier? (determines SI prefix)
-        var tier = Math.log10(number) / 3 | 0;
-
-        // if zero, we don't need a prefix
-        if(tier == 0) return number;
-
-        // get prefix and determine scale
-        var prefix = SI_PREFIXES[tier];
-        var scale = Math.pow(10, tier * 3);
-
-        // scale the number
-        var scaled = number / scale;
-
-        // format number and add prefix as suffix
-        return scaled.toFixed(0) + prefix;
-    }
     </script>    
 
     <script>
