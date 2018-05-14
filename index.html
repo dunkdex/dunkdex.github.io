@@ -301,8 +301,6 @@
 
           var etherRate = parseInt(data.result.successData.currency_rate_eth);
 
-          //alert(ETHER_RATE);
-
           ETH_RATE = readCookie("ETH_RATE");
 
           if(!ETH_RATE || ETH_RATE == 0)
@@ -313,11 +311,22 @@
                       1
                   );
                   //alert("refresh")
+ 
+            location.reload();
 
-                  location.reload();
           }else{
             $("#ethRate").html("ETH =  " + numberForDisplay(ETH_RATE)+ "KRW" );
             eraseCookie("ETH_RATE");
+
+            //alert("refresh")
+
+            var SELECT_TOKEN = readCookie("SELECT_TOKEN");
+
+            //alert(SELECT_TOKEN);
+
+            if(SELECT_TOKEN){
+                  location.href = "/#!/trade/"+SELECT_TOKEN+"-ETH";
+            }
           }
         //$.getScript("/js/main.js");
       }

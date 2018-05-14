@@ -48,7 +48,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li><a href="https://www.dunkpay.com/token" target="_blank"><i class="fa fa-info-circle"></i>DunkPay Token 소개</a></li>
-            <li><a id="ethRate" href="https://www.dunkpay.com/token" target="_blank">DunkPay Token 소개</a></li>
+            <li><a id="ethRate" href="https://www.dunkpay.com/token" target="_blank"></a></li>
           	<li style="display: none;" class="dropdown" id="helpDropdown"></li>
             <li style="display: none;" class="dropdown" id="tokenGuidesDropdown"></li>
             <li style="display: none;" class="dropdown" id="connection"></li>
@@ -187,8 +187,10 @@
     <script type="text/javascript">
 
     if( !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
-    {
-      $.getScript("/js/ledger.min.js");
+    {     
+      document.write('<script type="text/javascript" src="/js/ledger.min.js"><\/script>');
+
+      //$.getScript("/js/ledger.min.js");
     }
 
     var ETH_RATE = 0;
@@ -231,7 +233,6 @@
     function KRW2ETH(x) {
 
         var eth = parseFloat(x) / ETH_RATE ;
-
 
         return eth.toFixed(8);
     }
@@ -300,8 +301,6 @@
 
           var etherRate = parseInt(data.result.successData.currency_rate_eth);
 
-          //alert(ETHER_RATE);
-
           ETH_RATE = readCookie("ETH_RATE");
 
           if(!ETH_RATE || ETH_RATE == 0)
@@ -312,11 +311,22 @@
                       1
                   );
                   //alert("refresh")
+ 
+            location.reload();
 
-                  location.reload();
           }else{
             $("#ethRate").html("ETH =  " + numberForDisplay(ETH_RATE)+ "KRW" );
             eraseCookie("ETH_RATE");
+
+            //alert("refresh")
+
+            var SELECT_TOKEN = readCookie("SELECT_TOKEN");
+
+            //alert(SELECT_TOKEN);
+
+            if(SELECT_TOKEN){
+                  location.href = "/#!/trade/"+SELECT_TOKEN+"-ETH";
+            }
           }
         //$.getScript("/js/main.js");
       }
