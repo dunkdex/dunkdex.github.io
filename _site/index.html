@@ -81,7 +81,7 @@
               </ul>
             </div>
             <!-- <div class="row-box height4 padding"> -->
-            <div class="row-box height5 padding">
+            <div class="row-box height padding">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="buy"></div>
                 <div role="tabpanel" class="tab-pane" id="sell"></div>
@@ -202,6 +202,9 @@
     }    
     function numberForBigKRW(x) {
 
+        if(!x)
+          return 0;
+
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
         //console.log(krw);
@@ -214,16 +217,20 @@
     function numberForKRW(x) {
 
         if(!x)
-          return;
-    ;
+          return 0;
+    
         //console.log(x);
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
 
         return "₩"+ krw.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
-    }    
+    }  
+
     function numberForGraph(x) {
 
+        if(!x)
+          return 0;
+    
         var krw = ETH_RATE * parseFloat(x)
         krw = parseInt(krw);
 
